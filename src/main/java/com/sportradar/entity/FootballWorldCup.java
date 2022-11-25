@@ -1,16 +1,24 @@
 package com.sportradar.entity;
 
+import com.sportradar.service.Service;
+
 public class FootballWorldCup {
 
+    public FootballWorldCup(){
 
-    public void gameStart(){
+    }
+
+
+    public boolean gameStart(){
 
         System.out.println("The is the Foot World Cup!");
 
-        // initial service
+        // Register a service
+        Service service = new Service(this);
 
 
         // display welcomeMessage()
+        service.displayWelcomeMessage();
 
 
         // initialAGame();
@@ -34,7 +42,7 @@ public class FootballWorldCup {
         // whether continue to play the game
 
 
-
+        return true;
     }
 
 
