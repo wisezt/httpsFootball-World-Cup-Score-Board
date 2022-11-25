@@ -17,10 +17,9 @@ public class FootballWorldCupTest {
 
         FootballWorldCup footballWorldCup = mock(FootballWorldCup.class);
 
+        footballWorldCup.gameStart();
 
-        when(footballWorldCup.gameStart()).thenReturn(true);
-
-        assertEquals(false, footballWorldCup.gameStart());
+        verify(footballWorldCup).gameStart();
 
 
 

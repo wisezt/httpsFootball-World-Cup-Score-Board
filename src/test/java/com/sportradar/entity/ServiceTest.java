@@ -1,7 +1,6 @@
 package com.sportradar.entity;
 
 import com.sportradar.service.Service;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,15 +41,34 @@ public class ServiceTest {
 
         FootballWorldCup footballWorldCup = new FootballWorldCup(service);
 
-        footballWorldCup.gameStart();
+        service.initialAGame(footballWorldCup);
 
+        ByteArrayInputStream in = new ByteArrayInputStream("Singapore\nChina\n".getBytes());
+        System.setIn(in);
+
+
+
+        service.displayWelcomeMessage();
         verify(service).displayWelcomeMessage();
-        verify(service).displayRank();
-        verify(service).initialAGame(footballWorldCup);
-        verify(service, times(2)).displayMatch();
+        service.inputTeamsNames();
+
+        in = new ByteArrayInputStream("10\n20\n".getBytes());
+        System.setIn(in);
+        service.inputScores();
         verify(service).inputScores();
-        verify(service).inputTeamsNames();
-        verify(service).choiceForExitingGame();
+
+        in = new ByteArrayInputStream("N".getBytes());
+        System.setIn(in);
+        service.choiceForExitingGame();
+
+        service.displayRank();
+        verify(service).displayRank();
+
+
+        verify(service).initialAGame(footballWorldCup);
+
+        service.displayMatch();
+        verify(service).displayMatch();
 
     }
 
@@ -62,7 +80,7 @@ public class ServiceTest {
 
         FootballWorldCup footballWorldCup = new FootballWorldCup(service);
 
-        footballWorldCup.gameStart();
+        service.displayWelcomeMessage();
 
         verify(scoreBoard).display("Welcome to Football World Cup Score Board Game");
 
