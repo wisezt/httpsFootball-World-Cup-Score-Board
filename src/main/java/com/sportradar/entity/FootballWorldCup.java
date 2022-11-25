@@ -15,40 +15,40 @@ public class FootballWorldCup {
 
     public boolean gameStart(){
 
-        System.out.println("The is the Foot World Cup!");
+        System.out.println("This is the Foot World Cup!");
 
 
         // display welcomeMessage()
-        service.displayWelcomeMessage();
+        this.service.displayWelcomeMessage();
 
 
         // initialAGame();
-        service.initialAGame();
+        this.service.initialAGame();
 
 
         // Input Home Team Name and Away Team Name
-        service.inputTeamsNames();
+        this.service.inputTeamsNames();
 
 
         // Display the ScoreBoard
-        service.displayMatch();
+        this.service.displayMatch();
 
 
         // Input Home Team Score and Away Team Score
-        service.inputScores();
+        this.service.inputScores();
 
 
         // Display the ScoreBoard
-        service.displayMatch();
+        this.service.displayMatch();
 
 
 
         // Dispaly the rank in the scoreboard.
-        service.displayRank();
+        this.service.displayRank();
 
 
         // whether continue to play the game
-        service.choiceForExitingGame();
+        this.service.choiceForExitingGame();
 
 
         return true;

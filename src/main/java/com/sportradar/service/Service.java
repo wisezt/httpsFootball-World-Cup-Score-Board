@@ -2,25 +2,23 @@ package com.sportradar.service;
 
 
 import com.sportradar.entity.FootballWorldCup;
+import com.sportradar.entity.ScoreBoard;
 
 public class Service {
 
-
+        ScoreBoard scoreBoard;
 
         FootballWorldCup footballWorldCup;
 
-        public Service() {
-
-
+        public Service(ScoreBoard scoreBoard) {
+                this.scoreBoard = scoreBoard;
         }
 
-        public Service(FootballWorldCup footballWorldCup) {
-                this.footballWorldCup = footballWorldCup;
-        }
 
         public void displayWelcomeMessage() {
 
-                System.out.println("Welcome to the football game");
+                scoreBoard.display("Welcome to Football World Cup Score Board Game");
+
         }
 
         public void initialAGame() {
