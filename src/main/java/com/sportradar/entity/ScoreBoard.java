@@ -9,18 +9,6 @@ public class ScoreBoard {
 
         display(game.getHomeTeamName() + ": " +game.getHomeTeamScore() + " - " + game.getAwayTeamName() + ": " + game.getAwayTeamScore());
 
-
-        IntStream.range(0,30).forEach(x -> System.out.print("*"));
-        System.out.print("Football World Cup Score Board");
-        IntStream.range(0,30).forEach(x -> System.out.print("*"));
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println(game.getHomeTeamName() + ": " +game.getHomeTeamScore() + "\t-\t" + game.getAwayTeamName() + ": " + game.getAwayTeamScore());
-        System.out.println();
-        System.out.println();
-        IntStream.range(0,"Football World Cup Score Board".length()+60).forEach(x -> System.out.print("*"));
-        System.out.println();
     }
 
 
