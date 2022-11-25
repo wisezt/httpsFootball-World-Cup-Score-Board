@@ -6,7 +6,10 @@ import com.sportradar.entity.Game;
 import com.sportradar.entity.Records;
 import com.sportradar.entity.ScoreBoard;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Service {
 
@@ -152,6 +155,23 @@ public class Service {
 
         }
 
-        public void displayRank() {
+        public void displayRank(){
+
+                List<Game> list = getTop10(records);
+
+                scoreBoard.displayRank(list);
+
         }
+
+        private List<Game> getTop10(Records records) {
+
+                return records.getList()
+                        .stream()
+                        .sorted(Comparator.comparing(Game::getTotalScore).thenComparing(Game::getTimeStamp).reversed()
+                        )
+                        .limit(10)
+                        .collect(Collectors.toList());
+
+        }
+
 }

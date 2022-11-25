@@ -42,7 +42,6 @@ public class FootballWorldCup {
             // whether continue to play the game
             service.choiceForExitingGame();
 
-
         }
 
         System.out.println("Game Over");
@@ -52,5 +51,7 @@ public class FootballWorldCup {
 
 
     public void endGame() {
+        isPlayingGame = false;
+
     }
 }
