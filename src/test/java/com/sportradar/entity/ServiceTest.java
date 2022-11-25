@@ -6,9 +6,11 @@ import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class ServiceTest {
@@ -50,26 +52,6 @@ public class ServiceTest {
 
     }
 
-//    @Test
-//    public void testServiceDisplayMethodWithScoreBoard(){
-//
-//        Service service = mock(Service.class);
-//
-//        FootballWorldCup footballWorldCup = new FootballWorldCup(service);
-//
-//        footballWorldCup.gameStart();
-//
-//        verify(service).displayWelcomeMessage();
-//        verify(service).displayRank();
-//        verify(service).initialAGame();
-//        verify(service, times(2)).displayMatch();
-//        verify(service).inputScores();
-//        verify(service).inputTeamsNames();
-//        verify(service).choiceForExitingGame();
-//
-//    }
-
-
     @Test
     public void testServiceDisplayMethodWithScoreBoard() {
 
@@ -81,6 +63,28 @@ public class ServiceTest {
         footballWorldCup.gameStart();
 
         verify(scoreBoard).display("Welcome to Football World Cup Score Board Game");
+
+    }
+
+
+
+    @Test
+    public void testInputNames(){
+
+
+        Service service = new Service(new ScoreBoard());
+
+        service.initialAGame();
+
+        ByteArrayInputStream in = new ByteArrayInputStream("Singapore\nChina".getBytes());
+        System.setIn(in);
+
+        service.inputTeamsNames();
+
+        
+        assertEquals("Singapore", service.getGame().getHomeTeamName());
+        assertEquals("China", service.getGame().getAwayTeamName());
+
 
     }
 
