@@ -4,7 +4,7 @@ import com.sportradar.service.Service;
 
 public class FootballWorldCup {
 
-
+    boolean isPlayingGame;
 
     Service service;
 
@@ -14,46 +14,43 @@ public class FootballWorldCup {
 
 
     public boolean gameStart(){
+        isPlayingGame = true;
 
-        System.out.println("This is the Foot World Cup!");
+        while(isPlayingGame){
 
+            // initialAGame();
+            service.initialAGame(this);
 
-        // display welcomeMessage()
-        this.service.displayWelcomeMessage();
+            // display welcomeMessage()
+            service.displayWelcomeMessage();
 
+            // Input Home Team Name and Away Team Name
+            service.inputTeamsNames();
 
-        // initialAGame();
-        this.service.initialAGame();
+            // Display the ScoreBoard
+            service.displayMatch();
 
+            // Input Home Team Score and Away Team Score
+            service.inputScores();
 
-        // Input Home Team Name and Away Team Name
-        this.service.inputTeamsNames();
+            // Display the ScoreBoard
+            service.displayMatch();
 
+            // Display the rank in the scoreboard.
+            service.displayRank();
 
-        // Display the ScoreBoard
-        this.service.displayMatch();
-
-
-        // Input Home Team Score and Away Team Score
-        this.service.inputScores();
-
-
-        // Display the ScoreBoard
-        this.service.displayMatch();
-
-
-
-        // Dispaly the rank in the scoreboard.
-        this.service.displayRank();
+            // whether continue to play the game
+            service.choiceForExitingGame();
 
 
-        // whether continue to play the game
-        this.service.choiceForExitingGame();
+        }
 
+        System.out.println("Game Over");
 
         return true;
     }
 
 
-
+    public void endGame() {
+    }
 }

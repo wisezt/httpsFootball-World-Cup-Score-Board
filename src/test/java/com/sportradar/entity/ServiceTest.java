@@ -19,8 +19,10 @@ public class ServiceTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
+
     @BeforeEach
     public void setUp() {
+
 
         System.setOut(new PrintStream(outputStreamCaptor));
     }
@@ -44,7 +46,7 @@ public class ServiceTest {
 
         verify(service).displayWelcomeMessage();
         verify(service).displayRank();
-        verify(service).initialAGame();
+        verify(service).initialAGame(footballWorldCup);
         verify(service, times(2)).displayMatch();
         verify(service).inputScores();
         verify(service).inputTeamsNames();
@@ -74,7 +76,9 @@ public class ServiceTest {
 
         Service service = new Service(new ScoreBoard());
 
-        service.initialAGame();
+        FootballWorldCup footballWorldCup = new FootballWorldCup(service);
+
+        service.initialAGame(footballWorldCup);
 
         ByteArrayInputStream in = new ByteArrayInputStream("Singapore\nChina".getBytes());
         System.setIn(in);
@@ -94,7 +98,9 @@ public class ServiceTest {
 
         Service service = new Service(new ScoreBoard());
 
-        service.initialAGame();
+        FootballWorldCup footballWorldCup = new FootballWorldCup(service);
+
+        service.initialAGame(footballWorldCup);
 
         ByteArrayInputStream in = new ByteArrayInputStream("10\n20".getBytes());
         System.setIn(in);

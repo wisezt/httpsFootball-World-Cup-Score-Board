@@ -46,10 +46,12 @@ public class Service {
 
         }
 
-        public void initialAGame() {
+        public void initialAGame(FootballWorldCup footballWorldCup) {
 
                 this.game = new Game();
                 this.records = new Records();
+                this.footballWorldCup = footballWorldCup;
+
         }
 
         public void inputTeamsNames() {
@@ -127,6 +129,27 @@ public class Service {
         }
 
         public void choiceForExitingGame() {
+                System.out.print("Would you like to play another round: (Y/N)");
+                Scanner scanner = new Scanner(System.in);
+                String choice = scanner.nextLine();
+                while(!isAValidChoice(choice)){
+                        choice = scanner.nextLine();
+                }
+                if ( choice.toUpperCase().trim().equals("N") ) {
+                        footballWorldCup.endGame();
+                }
+
+        }
+
+        private boolean isAValidChoice(String choice) {
+                String choiceUpCase = choice.toUpperCase().trim();
+                if ( choiceUpCase.equals("Y") || choiceUpCase.equals("N") ) {
+                        return true;
+
+                }
+                System.out.println("--Please input \"Y\" or \"N\"--");
+                return false;
+
         }
 
         public void displayRank() {
