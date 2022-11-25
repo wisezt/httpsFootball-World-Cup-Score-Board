@@ -2,6 +2,7 @@ package com.sportradar.service;
 
 
 import com.sportradar.entity.FootballWorldCup;
+import com.sportradar.entity.Game;
 import com.sportradar.entity.ScoreBoard;
 
 public class Service {
@@ -9,6 +10,7 @@ public class Service {
         ScoreBoard scoreBoard;
 
         FootballWorldCup footballWorldCup;
+        private Game game;
 
         public Service(ScoreBoard scoreBoard) {
                 this.scoreBoard = scoreBoard;
@@ -22,6 +24,8 @@ public class Service {
         }
 
         public void initialAGame() {
+
+                this.game = new Game();
         }
 
         public void inputTeamsNames() {
