@@ -69,7 +69,7 @@ public class ServiceTest {
 
 
     @Test
-    public void testInputNames(){
+    public void testInputTeamsNames(){
 
 
         Service service = new Service(new ScoreBoard());
@@ -81,9 +81,29 @@ public class ServiceTest {
 
         service.inputTeamsNames();
 
-        
+
         assertEquals("Singapore", service.getGame().getHomeTeamName());
         assertEquals("China", service.getGame().getAwayTeamName());
+
+
+    }
+
+    @Test
+    public void testInputTeamsScores(){
+
+
+        Service service = new Service(new ScoreBoard());
+
+        service.initialAGame();
+
+        ByteArrayInputStream in = new ByteArrayInputStream("10\n20".getBytes());
+        System.setIn(in);
+
+        service.inputScores();
+
+
+        assertEquals(10, service.getGame().getHomeTeamScore());
+        assertEquals(20, service.getGame().getAwayTeamScore());
 
 
     }

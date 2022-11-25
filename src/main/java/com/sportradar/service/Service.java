@@ -3,6 +3,7 @@ package com.sportradar.service;
 
 import com.sportradar.entity.FootballWorldCup;
 import com.sportradar.entity.Game;
+import com.sportradar.entity.Records;
 import com.sportradar.entity.ScoreBoard;
 
 import java.util.Scanner;
@@ -13,12 +14,15 @@ public class Service {
 
         FootballWorldCup footballWorldCup;
 
+        Records records;
+
         public ScoreBoard getScoreBoard() {
                 return scoreBoard;
         }
 
         public void setScoreBoard(ScoreBoard scoreBoard) {
                 this.scoreBoard = scoreBoard;
+
         }
 
         public Game getGame() {
@@ -45,6 +49,7 @@ public class Service {
         public void initialAGame() {
 
                 this.game = new Game();
+                this.records = new Records();
         }
 
         public void inputTeamsNames() {
@@ -78,9 +83,47 @@ public class Service {
         }
 
         public void displayMatch() {
+                scoreBoard.displayMatch(game);
         }
 
         public void inputScores() {
+
+                System.out.print("Please Input the Home Team Score: ");
+                Scanner scanner = new Scanner(System.in);
+                String homeTeamScoreStr = scanner.nextLine();
+                while(!isAValidScoreStr(homeTeamScoreStr)){
+                        homeTeamScoreStr = scanner.nextLine();
+                }
+                game.setHomeTeamScore(Integer.parseInt(homeTeamScoreStr));
+
+                System.out.print("Please Input the Away Team Score: ");
+                String awayTeamScore = scanner.nextLine();
+                while(!isAValidScoreStr(homeTeamScoreStr)){
+                        awayTeamScore = scanner.nextLine();
+                }
+                game.setAwayTeamScore(Integer.parseInt(awayTeamScore));
+
+
+                records.add(game);
+        }
+
+        private boolean isAValidScoreStr(String scoreStr) {
+                int score;
+                try {
+                        score = Integer.parseInt(scoreStr);
+
+                        if ( score < 0 || score >=100) {
+                                System.out.println("--Please input a score between 0 to 99--");
+                                return false;
+                        }
+
+                        return true;
+                }
+                catch (NumberFormatException e) {
+                        System.out.println("--Please input a score between 0 to 99--");
+                }
+
+                return false;
         }
 
         public void choiceForExitingGame() {

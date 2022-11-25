@@ -7,4 +7,7 @@ public class ScoreBoard {
 
 
     }
+
+    public void displayMatch(Game game) {
+    }
 }
